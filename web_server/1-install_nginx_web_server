@@ -1,9 +1,19 @@
-#!/usr/bin/env bash
-# bash script to install nginx web server & make the following configurations:
+#!/bin/bash
 
-sudo apt-get update -y
-sudo apt-get install nginx -y
-sudo ufw allow 'Nginx HTTP'
-sudo echo "Holberton School" > /var/www/html/index.html
-sudo service nginx restart
-sudo service nginx reload
+# Update package list
+apt-get update -y
+
+# Install nginx
+apt-get install -y nginx
+
+# Ensure Nginx is started
+service nginx start
+
+# Create a custom index.html with required content
+echo "Holberton School for the win!" > /var/www/html/index.html
+
+# Allow Nginx through firewall (if applicable)
+ufw allow 80/tcp
+
+# Reload Nginx to apply changes
+service nginx reload
