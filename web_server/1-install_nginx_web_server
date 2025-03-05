@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
-# bash script to install nginx web server & make the following configurations:
+# Script to install Nginx and configure it to return "Holberton School"
 
+# Update package list
 sudo apt-get update -y
-sudo apt-get install nginx -y
+
+# Install Nginx
+sudo apt-get install -y nginx
+
+# Ensure firewall allows HTTP traffic
+sudo apt-get install -y ufw
 sudo ufw allow 'Nginx HTTP'
-sudo echo "Holberton School" > /var/www/html/index.html
-sudo service nginx restart
-sudo service nginx reload
+sudo ufw reload
+
+# Add content to index.html
+echo "Holberton School" | sudo tee /var/www/html/index.html > /dev/null
+
+# Ensure Nginx is running
+sudo systemctl restart nginx
+sudo systemctl enable nginx
