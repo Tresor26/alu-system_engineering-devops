@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#This script ensures Nginx is installed, configured to listen on port 80, and running.
 
 if ! command -v nginx &> /dev/null; then
     apt-get update
